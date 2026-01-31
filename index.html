@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+  background-color: pink !important;
+}
+
+  .card {
+  background: white;
+  padding: 30px 20px;
+  max-width: 420px;
+  margin: auto;
+  border-radius: 25px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  animation: fadeIn 1.2s ease;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.heart {
+  position: fixed;
+  color: #ff69b4;
+  font-size: 20px;
+  animation: float 6s infinite ease-in;
+}
+
+@keyframes float {
+  0% {
+    bottom: -10%;
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    bottom: 110%;
+    opacity: 0;
+  }
+}
+button {
+  padding: 14px 30px;
+  margin: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.08);
+}
+
+.yes {
+  background: linear-gradient(45deg, #ff5fa2, #ff85c2);
+  color: white;
+}
+
+.no {
+  background: #f1f1f1;
+}
+.cloud {
+  background: white;
+  border-radius: 20px;
+  padding: 12px 18px;
+  margin: 12px auto;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  animation: fadeIn 1s ease;
+}
+.envelope {
+  width: 260px;
+  margin: 25px auto;
+  padding: 20px;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  border-radius: 18px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  transition: transform 0.3s ease;
+}
+
+.envelope:hover {
+  transform: scale(1.05);
+}
+
+.envelope-front {
+  display: block;
+}
+
+.envelope-icon {
+  font-size: 42px;
+}
+
+.envelope-text {
+  margin-top: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #4a1c1c;
+}
+
+.envelope-message {
+  display: none;
+  font-size: 17px;
+  line-height: 1.4;
+  color: #ffffff;
+  font-weight: 500;
+}
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.popup-box {
+  background: #fff;
+  padding: 25px 20px;
+  border-radius: 16px;
+  text-align: center;
+  max-width: 300px;
+  font-size: 18px;
+  line-height: 1.5;
+  animation: popIn 0.4s ease;
+}
+
+.popup-box button {
+  margin-top: 15px;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 20px;
+  background: #ff5c8a;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+body {
+  background-image: url("imagdog.png");
+  background-repeat: repeat;
+  background-size: 150px;
+}
+.floating-gif {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 90px;
+  z-index: 9999;
+  pointer-events: none; /* buttons pe effect na pade */
+}
+/* Common GIF style */
+.gif {
+  position: fixed;
+  width: 120px;      /* size bada */
+  z-index: 1;
+  pointer-events: none;
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Different locations (NO overlap) */
+.gif-1 {
+  top: 15%;
+  left: 5%;
+}
+
+.gif-2 {
+  top: 55%;
+  right: 6%;
+}
+
+.gif-3 {
+  bottom: 10%;
+  left: 40%;
+}
+.gif-4 {
+  top: 30%;
+  right: 25%;
+}
+.gif-5 {
+  top:70%;
+  left:20%;
+}
+
+
+
+/* Floating animation */
+@keyframes float {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+
+
+
+
+
+
+</style>
+
+
+  <title>For You 🌸</title>
+</head>
+<body>
+>
+  <div class="card">
+  <h1 id="question">You are My Crush 👀</h1>
+<p id="subtext">I really like you, Will you be mine 💍💞..?</p>
+
+<div id="buttons">
+  <button class="yes" onclick="handleClick('yes')">YES 💖</button>
+  <button class="no" onclick="handleClick('no')">NO 🌼</button>
+</div>
+
+<div id="extra"></div>
+
+</div>
+<div class="heart" style="left:10%">💖</div>
+<div class="heart" style="left:40%">💘</div>
+<div class="heart" style="left:70%">💕</div>
+<div id="firstSecret" class="envelope" onclick="reveal(this)">
+  <div class="envelope-front">
+    <div class="envelope-icon">✉️</div>
+    <div class="envelope-text">Tap to Reveal</div>
+  </div>
+
+  <div class="envelope-message">
+    <p id="oldMessage">
+  I made this little space just to tell you that you truly matter to me 🌸
+</p>
+
+  </div>
+  <!-- POPUP -->
+<div id="popupOverlay" class="popup-overlay">
+  <div class="popup-box">
+    <p>
+      Ghar ka chotta beta + Ghar ki badi beti<br>
+      = <strong>Main Character Duo ✨</strong>
+    </p>
+    <button onclick="closePopup()">Okay 💗</button>
+  </div>
+<div id="extra"></div>
+
+</div>
+<textarea
+  id="noThoughtBox"
+  oninput="saveNoResponse(this.value)"
+
+  placeholder="What do you think..?"
+  style="
+    display:none;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 340px;
+    height: 90px;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    z-index: 999;
+  ">
+</textarea>
+
+
+<script>
+let step = 0;
+
+function handleClick(answer) {
+
+
+
+  // STEP 0 – FIRST SCREEN
+  if (step === 0) {
+    if (answer === "no") {
+      showNoPage();
+      return;
+    }
+
+    if (answer === "yes") {
+      document.getElementById("question").innerText = "Are you sure? 🤍";
+      document.getElementById("subtext").innerText = "";
+      step = 1;
+      return;
+    }
+  }
+
+  // STEP 1 – ARE YOU SURE
+  if (step === 1) {
+    if (answer === "no") {
+      showNoPage();
+      return;
+    }
+
+    if (answer === "yes") {
+      document.getElementById("question").innerText = "Ek baar fir se soch lo 🌸";
+      step = 2;
+      return;
+    }
+  }
+
+  // STEP 2 – FINAL CONFIRM
+  if (step === 2) {
+    if (answer === "no") {
+      showNoPage();
+      return;
+    }
+
+    if (answer === "yes") {
+      showQuestion1();
+      sendResponse("YES", "She accepted 💖");
+
+      return;
+    }
+  }
+}let answers = {
+  feelSame: "",
+  dateYes: "",
+  dateValue: "",
+  expectation: ""
+};
+
+
+
+function showQuestion1() {
+  step = 3;
+  document.getElementById("question").innerText =
+    "Do you feel the same way as I feel for you..? 💭";
+  document.getElementById("subtext").innerText = "";
+
+  document.getElementById("buttons").innerHTML = `
+  <button onclick="feelSameYes()">YES 💖</button>
+  <button class="no" onclick="feelSameNo()">NO 🌼</button>
+
+  `;
+}
+function feelSameYes() {
+
+document.getElementById("noThoughtBox").style.display = "none";
+
+
+  answers.feelSame = "YES";
+
+  document.getElementById("question").innerText =
+    "Would you like to go on a date with me? 🌸";
+
+  document.getElementById("buttons").innerHTML = `
+    <button class="yes" onclick="dateYes()">YES 💕</button>
+    <button class="no" onclick="dateNo()">NO 🙂</button>
+  `;
+}
+
+
+
+
+function dateYes() {
+
+  answers.dateYes = "YES";
+
+  document.getElementById("question").innerText =
+    "Choose a date when you'd like to go out with me 💫";
+
+  document.getElementById("buttons").innerHTML = `
+    <input type="date" id="dateInput">
+    <p style="font-size:12px;">*T&C: I can come anywhere just to see you 💗</p>
+    <br><br>
+    <button class="yes" onclick="saveDate()">Next ➜</button>
+  `;
+
+
+}
+function saveDate() {
+  answers.dateValue = document.getElementById("dateInput").value;
+
+  document.getElementById("question").innerText =
+    "What do you expect from me if we come into a relationship..? 💭";
+
+  document.getElementById("buttons").innerHTML = `
+    <textarea id="expectation"
+      placeholder="Write your thoughts here..."
+      rows="4"></textarea>
+    <br><br>
+    <button class="yes" onclick="submitYesFlow()">Send 💌</button>
+  `;
+}
+function submitYesFlow() {
+
+  answers.expectation =
+    document.getElementById("expectation").value;
+
+  sendResponse("YES FLOW", answers);
+
+  document.getElementById("question").innerText =
+    "Thank you for being honest 💖";
+
+  document.getElementById("buttons").innerHTML =
+    "<p>This means a lot to me 🌸</p>";
+}
+function sendResponse(type, data) {
+  fetch("https://formspree.io/f/mjgwjapb", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      type: type,
+      feelSame: data.feelSame,
+      dateDecision: data.dateYes,
+      selectedDate: data.dateValue,
+      expectation: data.expectation
+    })
+  });
+}
+
+
+
+function showNoPage() {
+  function showNoPage() {
+  const body = document.getElementById("pageBody");
+  body.classList.remove("with-bg");
+  body.classList.add("no-bg");
+
+  // baaki tumhara NO page code
+}
+
+    document.getElementById("firstSecret").style.display = "none";
+  document.getElementById("question").innerText =
+    "Thank you for being honest 🌼";
+  document.getElementById("subtext").innerText =
+    "I respect your feelings completely.";
+
+  document.getElementById("buttons").innerHTML = `
+    <textarea id="reason" placeholder="Why did you say no?" rows="4"></textarea>
+    <br><br>
+    <button class="yes" onclick="submitNo()">Send</button>
+  `;
+}
+function submitNo() {
+  let reason = document.getElementById("reason").value;
+
+  sendResponse("NO", reason);
+
+  document.getElementById("buttons").innerHTML =
+    "<p>Thank you for sharing 🌸</p>";
+    document.getElementById("extra").innerText
+}
+
+
+function sendResponse(answer, message = "") {
+  fetch("https://formspree.io/f/mjgwjapb", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      response: answer,
+      note: message
+    })
+  });
+}
+function reveal(box) {
+  box.querySelector(".hint").style.display = "none";
+  box.querySelector(".secret").style.display = "block";
+}
+function reveal(box) {
+  box.querySelector(".envelope-front").style.display = "none";
+    box.querySelector(".envelope-message").style.display = "block";}
+
+document.getElementById("extra").innerText =
+"Raunak is already a little yours, whether you admit it or not 💗";
+function feelSameNo() {
+  document.getElementById("noThoughtBox").style.display = "block";
+}
+function saveNoResponse(text) {
+  answers.noThought = text;
+  console.log("Her response:", text);
+}
+
+
+</script>
+
+
+<img
+  src="https://i.pinimg.com/originals/2d/11/90/2d1190ef23ed9f21cd4e3b1bd3e688c8.gif"
+  alt="cute gif"
+  class="floating-gif"
+>
+
+
+<!-- Floating GIFs -->
+<img src="https://i.pinimg.com/originals/15/42/73/1542736db88fd2d566c27838439cf6f7.gif" class="gif gif-1">
+<img src="https://media.tenor.com/e4k9AdbBZQ4AAAAM/dog-smile.gif" class="gif gif-2">
+<img src="https://media.tenor.com/nrFeaIDqhbAAAAAM/rohit2008-roseday.gif" class="gif gif-3">
+<img src="https://media.tenor.com/5T9NoewNL9EAAAAe/bubu-dudu.png" class="gif gif-4">
+<img src="https://media.tenor.com/MKkJWYigjycAAAAM/cute-cat-cat-cute.gif" class="gif gif-5">
+
+
+
+</body>
+</html>
